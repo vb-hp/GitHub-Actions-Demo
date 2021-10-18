@@ -29,5 +29,21 @@ jobs:
       - name: Build APK 
         run: ./gradlew assembleDebug
 
+      - name: Upload apk
+      - uses: actions/upload-artifact@master
+        with:
+          name: uploading apk
+          path: public/
+  tests:
+    run-on: ubuntu-latest
+    needs: build
+    
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/download-artifact@master
+         with:
+          name: uploading apk
+          path: public
+          
       - name: Run Unit Tests
         run: ./gradlew testDebugUnitTest
