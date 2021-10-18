@@ -25,11 +25,6 @@ jobs:
       # Checkout GitHub-Actions-Demo Project
       - uses: actions/checkout@v2
       
-      - name: Set up our JDK environment
-        uses: actions/setup-java@v2
-        with:
-            distribution: 'zulu'
-            java-version: 1.8
       # Runs a single command using the runners shell
       - name: Build APK 
         run: ./gradlew assembleDebug
