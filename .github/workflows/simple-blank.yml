@@ -55,25 +55,10 @@ jobs:
           name: Release Artifact
           path: app/build/outputs/apk/debug/app-debug.apk
    
-  releaseNotes:
-    runs-on: ubuntu-latest
-    needs: [build, test, deployAPK]
-    steps:
-      - uses: actions/checkout@v2   
-      - name: Create Release
-        id:  create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
 
   publishArtifacts:
     runs-on: ubuntu-latest
-    needs: [build, test, deployAPK, releaseNotes]
+    needs: [build, test, deployAPK]
     steps:
       - uses: actions/checkout@v2   
       - name: Save name of our Artifact
