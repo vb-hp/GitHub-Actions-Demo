@@ -57,7 +57,7 @@ jobs:
    
   releaseNotes:
     runs-on: ubuntu-latest
-    needs: deployAPK
+    needs: [build, test, deployAPK]
     steps:
       - uses: actions/checkout@v2   
       - name: Create Release
