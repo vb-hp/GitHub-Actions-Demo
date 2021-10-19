@@ -73,7 +73,7 @@ jobs:
 
   publishArtifacts:
     runs-on: ubuntu-latest
-    needs: releaseNotes
+    needs: [build, test, deployAPK, releaseNotes]
     steps:
       - uses: actions/checkout@v2   
       - name: Save name of our Artifact
